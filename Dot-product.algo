@@ -1,0 +1,50 @@
+PROCEDURE Dot_Product(v1, v2, n, OUT result)
+    DECLARE result ← 0
+
+    FOR i FROM 1 TO n STEP 1 DO
+        result ← result + (v1[i] * v2[i])
+    END_FOR
+END_PROCEDURE
+
+ALGORITHM CheckOrthogonality_Procedure(VectorList1, VectorList2, k, n)
+    // k = number of vector pairs
+    // n = size of each vector
+
+    FOR i FROM 1 TO k STEP 1 DO
+        DECLARE result ← 0
+        CALL DotProduct(VectorList1[i], VectorList2[i], n, result)
+
+        IF result = 0 THEN
+            PRINT "Vectors at index ", i, " are orthogonal"
+        ELSE
+            PRINT "Vectors at index ", i, " are not orthogonal"
+        END_IF
+    END_FOR
+END_ALGORITHM
+
+
+FUNCTION DotProductFunc(v1, v2, n)
+    DECLARE sum ← 0
+
+    FOR i FROM 1 TO n STEP 1 DO
+        sum ← sum + (v1[i] * v2[i])
+    END_FOR
+
+    RETURN sum
+END_FUNCTION
+
+
+ALGORITHM CheckOrthogonality_Function(VectorList1, VectorList2, k, n)
+    // k = number of vector pairs
+    // n = size of each vector
+
+    FOR i FROM 1 TO k STEP 1 DO
+        DECLARE result ← DotProductFunc(VectorList1[i], VectorList2[i], n)
+
+        IF result = 0 THEN
+            PRINT "Vectors at index ", i, " are orthogonal"
+        ELSE
+            PRINT "Vectors at index ", i, " are not orthogonal"
+        END_IF
+    END_FOR
+END_ALGORITHM
